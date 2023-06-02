@@ -1,18 +1,21 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'pmn-rn-core';
+import { createRequest, removeVietnamese } from 'pmn-rn-core';
 
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
+const request = createRequest(BASE_URL, 20000, 'vi_VN');
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
+  const nameVietNamese = 'Minh Ngọc';
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    request()
+      .get('todo/1')
+      .then((response) => console.log({ response }));
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Result: {removeVietnamese(nameVietNamese)}</Text>
     </View>
   );
 }
@@ -22,10 +25,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });

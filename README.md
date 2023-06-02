@@ -11,21 +11,12 @@ npm install pmn-rn-core
 ## Usage
 
 ```js
-import { multiply } from 'pmn-rn-core';
+import { createRequest, removeVietnamese, validator, regex , debounce, removeUndefined, useStateBase,useStateData,useStateList} from 'pmn-rn-core';
 
 // ...
-
-const result = await multiply(3, 7);
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
+const request = createRequest(BASE_URL, 20000, 'vi_VN');
+  request()
+      .get('todo/1')
+      .then((response) => console.log({ response }));
 ```
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
